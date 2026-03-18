@@ -24,6 +24,48 @@
 
 <link rel="stylesheet" type="text/css" href="css/vendor.css">
 <link rel="stylesheet" type="text/css" href="style.css">
+<style>
+  /* vitrine: deixa claro que a imagem abre em visualização grande */
+  .product-image { cursor: zoom-in; }
+  #imageModalPicture { max-height: 80vh; object-fit: contain; }
+  /* modal com efeito de desfoque no fundo e no painel */
+  .modal-backdrop.show {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  #imageModal .modal-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+  }
+  #imageModal .modal-header {
+    background: transparent;
+    border: none;
+  }
+  #imageModal .modal-body {
+    padding: 0;
+    background: transparent;
+  }
+  /* etiqueta de tamanho dentro do zoom */
+  #imageModal .modal-body { position: relative; }
+  #imageModalSizes {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+</style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,12 +142,14 @@
     </defs>
   </svg>
 
-  <!-- <div class="preloader-wrapper">
-    <div class="preloader">
+   <div id="preloader">
+    <div class="loader-content">
+        <img src="images/logoloja.png" alt="Logo" class="loader-logo">
+        <div class="spinner"></div>
     </div>
-  </div>
+</div>
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
+  <!-- <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
     <div class="offcanvas-header justify-content-center">
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -196,45 +240,20 @@
             <li class="nav-item">
               <a href="#hero" class="nav-link mx-2 active">Home</a>
             </li>
-           <!--  <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link mx-2 dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                aria-expanded="false">Pages</a>
+                aria-expanded="false">Nossa coleção</a>
              <ul class="dropdown-menu" aria-labelledby="pages">
-                <li><a href="about.html" class="dropdown-item">About Us<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="shop.html" class="dropdown-item">Shop<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="single-product.html" class="dropdown-item">Single Product<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="cart.html" class="dropdown-item">Cart<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="wishlist.html" class="dropdown-item">Wishlist<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="checkout.html" class="dropdown-item">Checkout<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="blog.html" class="dropdown-item">Blog<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="single-post.html" class="dropdown-item">Single Post<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="contact.html" class="dropdown-item">Contact<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="faqs.html" class="dropdown-item">FAQs<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="account.html" class="dropdown-item">Account<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="error.html" class="dropdown-item">Error 404<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-                <li><a href="styles.html" class="dropdown-item">Styles<span
-                      class="badge bg-secondary-subtle text-dark ms-2">PRO</span></a></li>
-              </ul> 
-            </li>-->
+                <li><a href="camisa seleção.html" class="dropdown-item"> COLEÇÃO SELEÇÕES</a></li>
+                <li><a href="camisa nacional.html" class="dropdown-item">COLEÇÃO NACIONAIS</a></li>
+                <li><a href="camisa europa.html" class="dropdown-item">COLEÇÃO EUROPA</a></li>
+              </ul>  
+            </li>
             <li class="nav-item">
-              <a href="#new-arrival" class="nav-link mx-2">NOSSO MODELOS</a>
+              <a href="index.html #new-arrival" class="nav-link mx-2"> Coleção Premium</a>
             </li>
            <li class="nav-item">
-              <a href="#footer" class="nav-link mx-2">CONTATO</a>
+              <a href="#register" class="nav-link mx-2">CONTATO</a>
             </li> 
            <!-- <li class="nav-item">
               <a href="#" class="nav-link mx-2">Hoodies</a>
@@ -300,7 +319,7 @@
         </h1>
         <p class="text-uppercase text-white mb-4">Camisas oficiais e alternativas dos maiores clubes do mundo.</p>
         <a href="#new-arrival" class="btn btn-outline-light btn-wrap">
-    Compre! <i class="icon icon-arrow-io fs-5 align-text-bottom"></i>
+    Compre agora! <i class="icon icon-arrow-io fs-5 align-text-bottom"></i>
   </a>
       </div>
     </div>
@@ -354,32 +373,24 @@
               </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
-
-  <section id="new-arrival" class="product-store">
+    <section id="new-arrival" class="product-store">
     <div class="container">
       <h2 class="display-5 fw-light text-uppercase text-center mb-5">NOSSOS MODELOS</h2>
       <div class="row">
         <div class="col-md-6 col-lg-3 my-4">
-          <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
-    </div>
-          <div class="product-item">
+          <div class="product-item position-relative sold-out">
+            <span class="sold-out-badge">Esgotado</span>
             <div class="image-holder" style="width: 100%; height: 100%;">
               <img src="images/modelos/camisa-seleção-1.png" alt="Books" class="product-image img-fluid">
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 " aria-disabled="true" tabindex="-1">Esgotado 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -387,27 +398,20 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">camisa do brasil</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$120.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
-          <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
-    </div>
           <div class="product-item">
             <div class="image-holder">
               <img src="images/modelos/camisa-seleção-argentina.png" alt="Books" class="product-image img-fluid">
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -415,27 +419,20 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa da Argentina</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140,00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
-          <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
-    </div>
           <div class="product-item">
             <div class="image-holder">
               <img src="images/modelos/camisa-seleção-alemanha.png" alt="Books" class="product-image img-fluid">
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -443,27 +440,20 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa da Alemanha</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140,00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
-          <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
-    </div>
           <div class="product-item">
             <div class="image-holder">
               <img src="images/modelos/camisa-seleção-ingleterra.png" alt="Books" class="product-image img-fluid">
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -471,27 +461,20 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa da Inglaterra</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140,00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
-          <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
-    </div>
           <div class="product-item">
             <div class="image-holder">
               <img src="images/modelos/camisa-flamengo.png" alt="Books" class="product-image img-fluid">
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -499,16 +482,12 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa Do Flamengo</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140,00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -516,10 +495,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -527,16 +505,12 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa Do Flamengo</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140,00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -544,10 +518,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -555,16 +528,13 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa do Athletico mineiro</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
+          
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -572,10 +542,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -583,16 +552,13 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa do Corinthias</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
+          
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -600,10 +566,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -611,16 +576,13 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa do United</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
+          
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -628,10 +590,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -639,16 +600,13 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa Do Totteam</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
+          
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -656,10 +614,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -667,16 +624,13 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa do Real Madri</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 my-4">
           <div class="product-item position-relative">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-light text-white bg-dark-50" style="right: 0; background: rgba(0,0,0,0.6); font-size: 0.55rem;
-    font-weight: bold;letter-spacing: 1px; backdrop-filter: blur(5px);">
-      P/M/GG
-    </div>
+          
     </div>
           <div class="product-item">
             <div class="image-holder">
@@ -684,10 +638,9 @@
             </div>
             <div class="cart-concern">
               <div class="cart-button d-flex justify-content-between align-items-center">
-                <a href="https://w.app/ms0vds" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
+                <a href="https://wa.link/qnfzqt" class="btn-wrap cart-link d-flex align-items-center text-capitalize fs-6 ">COMPRAR 
                 </a>
-                <a href="https://w.app/ms0vds" class="wishlist-btn">
-                  <i class="icon icon-heart"></i>
+                <a href="https://wa.link/qnfzqt" class="wishlist-btn">
                 </a>
               </div>
             </div>
@@ -695,7 +648,7 @@
               <h4 class="product-title mb-0">
                 <a href="single-product.html">Camisa do arsenal</a>
               </h4>
-              <p class="m-0 fs-5 fw-normal">R$140.00</p>
+              <p class="m-0 fs-5 fw-normal">R$150,00</p>
             </div>
           </div>
         </div>
@@ -709,7 +662,6 @@
   <section id="category" class="padding-medium">
     <div class="container-fluid">
       <div class="row px-md-5">
-
         <div class="col-md-4 position-relative">
           <div class="z-1 position-absolute bottom-0 start-0 m-3 mg-lg-5 ps-4 text-white">
             <h5 class="text-light text-uppercase">CAMISA DE SELEÇÃO</h5>
@@ -741,7 +693,6 @@
           </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -756,7 +707,7 @@
 
       <div class="col-md-4 offset-md-1 d-flex justify-content-end">
         <div class="d-grid gap-2 w-100">
-          <a href="https://w.app/ms0vds" target="_blank" class="btn btn-dark btn-lg rounded-3 d-flex align-items-center justify-content-center py-3">
+          <a href="https://wa.link/qnfzqt" target="_blank" class="btn btn-dark btn-lg rounded-3 d-flex align-items-center justify-content-center py-3">
             <iconify-icon icon="ic:baseline-whatsapp" class="fs-4 me-2" style="color: #d8b802;"></iconify-icon>
             FALAR NO WHATSAPP
           </a>
@@ -766,6 +717,22 @@
     </div>
   </div>
 </section>
+
+  <!-- Modal de vitrine para visualizar as camisas em tela cheia -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="imageModalLabel">Visualização</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <span id="imageModalSizes" class="d-none">P/M/GG</span>
+          <img id="imageModalPicture" src="" alt="Camisa em destaque" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer id="footer" class="bg-black">
   <div class="container padding-medium pt-5">
@@ -832,6 +799,104 @@
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-</body>
+  <script>
+    // abre a vitrine (modal) ao clicar nas imagens das camisas
+    document.addEventListener("DOMContentLoaded", function () {
+      const modalElement = document.getElementById("imageModal");
+      if (!modalElement) return;
+
+      const modalImage = document.getElementById("imageModalPicture");
+      const modalTitle = document.getElementById("imageModalLabel");
+      const modalInstance = new bootstrap.Modal(modalElement);
+
+      document.querySelectorAll(".product-item .image-holder img").forEach((img) => {
+        img.addEventListener("click", () => {
+          modalImage.src = img.src;
+          modalImage.alt = img.alt || "Camisa em destaque";
+
+          const titleEl = img.closest(".product-item")?.querySelector(".product-title");
+          modalTitle.textContent = titleEl ? titleEl.textContent.trim() : "Visualização";
+
+          const card = img.closest('[class*=\"col-\"]') || img.closest(".product-item");
+          const sizeEl = card ? card.querySelector(".position-absolute") : null;
+          const sizeText = sizeEl ? sizeEl.textContent.trim() : "";
+          const modalSizes = document.getElementById("imageModalSizes");
+          if (modalSizes) {
+            if (sizeText) {
+              modalSizes.textContent = sizeText;
+              modalSizes.classList.remove("d-none");
+            } else {
+              modalSizes.classList.add("d-none");
+            }
+          }
+
+          modalInstance.show();
+        });
+      });
+    });
+  </script>
+  <script>
+    window.addEventListener("load", function() {
+        const loader = document.getElementById("preloader");
+        
+        // Define um tempo mínimo de 2 segundos (2000 milissegundos)
+        // Isso garante que o cliente veja sua logo antes de entrar no site
+        setTimeout(() => {
+            loader.style.opacity = "0"; // Inicia o efeito de sumir
+            
+            setTimeout(() => {
+                loader.style.display = "none"; // Remove totalmente da tela
+            }, 500); // Tempo da transição de transparência
+            
+        }, 1000); // Altere aqui: 3000 = 3 segundos, 4000 = 4 segundos...
+    });
+</script>
+  <script>\n    // anima��o de carrinho ao clicar
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.cart-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.add('is-loading');
+          setTimeout(() => btn.classList.remove('is-loading'), 1200);
+        });
+      });
+    });\n  </script>\n</body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
