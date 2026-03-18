@@ -360,12 +360,60 @@ a {
   transition: transform 0.3s ease-out 0s;
 }
 
+/* Botão comprar arredondado */
+.cart-link {
+  border-radius: 14px;
+}
+
 
 /*----------------------------------------------*/
 /* 6. SITE STRUCTURE */
 /*----------------------------------------------*/
 /* 6.1 Header
 --------------------------------------------------------------*/
+
+/* Estilo do Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000; /* Fundo sempre preto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999; /* Garante que fique em cima de tudo */
+    transition: opacity 0.5s ease;
+}
+
+/* Animação da sua Logo pulsando */
+.loader-logo {
+    width: 150px; /* Ajuste o tamanho da sua logo aqui */
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Opcional: Um círculo girando embaixo da logo */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-left-color: #d8b802; /* Dourado da sua logo */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
 /* Preloader */
 .preloader-wrapper {
   width: 100%;
@@ -458,6 +506,12 @@ a {
     background-color: rgb(10 10 10) !important;
 }
 
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: rgb(0, 0, 0) !important;
+}
+
+
 .nav-link {
   color: #d8b802;
   font-size: 0.875rem;
@@ -520,8 +574,37 @@ iconify-icon {
   position: relative;
 }
 
+.product-item .image-holder {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-item .sold-out-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 14px;
+  background: #b81f24;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+  z-index: 10;
+}
+
+.product-item.sold-out .product-image {
+  filter: grayscale(0.45);
+  opacity: 0.8;
+}
+
+.product-item.sold-out .cart-link {
+  pointer-events: none;
+  opacity: 0.55;
+}
+
 .product-item .cart-concern {
-  background: var(--light-color);
   width: 80%;
   text-align: center;
   margin: auto;
@@ -558,6 +641,51 @@ iconify-icon {
 
 .product-item .item-price {
   font-size: 1.8em;
+}
+
+/* Estilo do botão COMPRAR (cart-link) */
+.cart-concern .cart-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  color: var(--dark-color);
+  border: 1.5px solid var(--dark-color);
+  border-radius: 999px;
+  padding: 0.65rem 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.cart-concern .cart-link:hover,
+.cart-concern .cart-link:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,0.18);
+  background: var(--dark-color);
+  color: #fff;
+}
+
+/* animação de carrinho ao clicar no botão comprar */
+.cart-concern .cart-link::after {
+  content: "🛒";
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+.cart-concern .cart-link.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+.cart-concern .cart-link.is-loading::after {
+  animation: cart-bounce 0.5s ease-in-out infinite alternate;
+}
+@keyframes cart-bounce {
+  from { transform: translateY(0) rotate(0deg); }
+  to   { transform: translateY(-3px) rotate(-8deg); }
 }
 
 
